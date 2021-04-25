@@ -6,6 +6,10 @@ public class UIDirector : MonoBehaviour
 {
     [SerializeField] GameObject m_blurWidget;
     [SerializeField] GameObject m_pauseMenu;
+
+
+    int m_numCircles = 0;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -37,5 +41,15 @@ public class UIDirector : MonoBehaviour
         m_blurWidget.gameObject.SetActive(false);
         m_pauseMenu.gameObject.SetActive(false);
 
+    }
+
+    public void OnNumCirclesChanged(int i_numCircles)
+    {
+        m_numCircles = i_numCircles;
+    }
+
+    public int GetNumCircles()
+    {
+        return m_numCircles;
     }
 }
