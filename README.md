@@ -1,4 +1,5 @@
 # Proyecto Phantasia (Unity 3D, C#)
+Esta es la rama del stream 002, emitido el 24 de abril de 2021
 Este repositorio contiene el progreso del proyecto realizado por el **Profesor Lolo** en su canal de [Twitch](https://twitch.tv/prof_lolo), [YouTube](https://www.youtube.com/channel/UCFrkV0D1Ph908VbWI201BaQ).
 
 En el main branch se puede encontrar el progreso actual del proyecto, mientars que en las ramas, cuyo nombre es
