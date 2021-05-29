@@ -10,6 +10,8 @@ public class MCController : MonoBehaviour
     Vector2 m_rawAxis;
     Vector3 m_velocity;
     Vector3 m_lookAt;
+    bool m_actionRequested = false;
+
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
@@ -26,6 +28,24 @@ public class MCController : MonoBehaviour
     {
         m_rigidBody.velocity = m_velocity;
         m_rigidBody.rotation = Quaternion.LookRotation(m_lookAt);
+
+        if(m_actionRequested)
+        {
+            m_actionRequested = false;
+            //Ejecutar accion
+            Vector3 start = transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+            Vector3 direction = m_lookAt.normalized;
+            float maxDistance = 1.5f;
+            LayerMask mask = LayerMask.GetMask(GameplayConstants.PhysicLayer.Interactible);
+            QueryTriggerInteraction queryTrigger = QueryTriggerInteraction.Ignore;
+            RaycastHit hit;
+            if (Physics.Raycast(start, direction, out hit, maxDistance, mask, queryTrigger))
+            {
+                //Ha habido colision
+                Interactible interactible = hit.collider.gameObject.GetComponent<Interactible>();
+                interactible.OnInteracted();
+            }
+        }
     }
 
     void OnMove(InputValue i_value)
@@ -35,6 +55,14 @@ public class MCController : MonoBehaviour
         if (m_velocity.magnitude > 0.0f)
         {
             m_lookAt = m_velocity.normalized;
+        }
+    }
+
+    void OnAction(InputValue i_value)
+    {
+        if (i_value.isPressed)
+        {
+            m_actionRequested = true;
         }
     }
 }
