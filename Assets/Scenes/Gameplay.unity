@@ -429,8 +429,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.5
+  far clip plane: 300
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -456,13 +456,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 3.9, z: -4.3}
+  m_LocalRotation: {x: 0.19936788, y: 0, z: 0, w: 0.97992474}
+  m_LocalPosition: {x: 0, y: 3.26, z: -4.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2146632184}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1127,11 @@ MonoBehaviour:
   m_pieces: {fileID: 667394962444153097, guid: 84f89822c99c3e44080bf19a9552b934, type: 3}
   m_bigDecos:
   - {fileID: 3342365641658838356, guid: 3a003184f72d65d428fdbebf45844e37, type: 3}
+  m_biomes:
+  - {fileID: 11400000, guid: 0394db3892d02a44b81277570301e26d, type: 2}
+  - {fileID: 11400000, guid: 2f6c2e385a026254a901b41f635d6436, type: 2}
+  - {fileID: 11400000, guid: 5eb0451fcba4b4b4ab8022543776f7cb, type: 2}
+  - {fileID: 11400000, guid: eceb805ed08a05b4c8b14d0e7fc3e4f7, type: 2}
 --- !u!1 &2146632183
 GameObject:
   m_ObjectHideFlags: 0
