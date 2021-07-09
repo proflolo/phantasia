@@ -43,7 +43,9 @@ Shader "Custom/TreeShader2"
         {
             // Albedo comes from a texture tinted by color
             //fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            fixed4 c = tex2D (_MainTex, (IN.uv_MainTex + float2(_TreeOffset_X, _TreeOffset_Y + 1.0))/4.0);
+            float u = (IN.uv_MainTex.x + _TreeOffset_X)/4.0;
+            float v = (IN.uv_MainTex.y + _TreeOffset_Y)/2.0;
+            fixed4 c = tex2D (_MainTex, float2(u, v));
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;

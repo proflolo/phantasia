@@ -45,53 +45,53 @@
 
 ----- il2cpp Statistics -----
 General:
-	Conversion Time: 3,618 s
+	Conversion Time: 3,944 s
 	Job Count: 24
 	Processor Count: 24
 	Files Written: 274
-	String Literals: 4756
+	String Literals: 4759
 Methods:
-	Total Methods: 30664
-	Non-Generic Methods: 17838
+	Total Methods: 30672
+	Non-Generic Methods: 17846
 	Generic Type Methods: 10182
 	Generic Methods: 2644
 	Shared Methods: 12761
 	Methods with Tail Calls : 0
 Metadata:
-	Total: 2.422,11 kb
-	String Literals: 37,16 kb
-	String Literal Data: 121,75 kb
-	Metadata Strings: 407,36 kb
+	Total: 2.423,46 kb
+	String Literals: 37,18 kb
+	String Literal Data: 121,80 kb
+	Metadata Strings: 407,63 kb
 	Events: 1,29 kb
-	Properties: 79,18 kb
-	Methods: 623,09 kb
+	Properties: 79,24 kb
+	Methods: 623,34 kb
 	Parameter Default Values: 4,04 kb
 	Field Default Values: 58,38 kb
 	Field and Parameter Default Values Data: 75,34 kb
 	Field Marshaled Sizes: 9,75 kb
-	Parameters: 241,10 kb
-	Fields: 157,05 kb
+	Parameters: 241,21 kb
+	Fields: 157,15 kb
 	Generic Parameters: 9,59 kb
 	Generic Parameter Constraints: 0,77 kb
 	Generic Containers: 8,09 kb
 	Nested Types: 3,15 kb
 	Interfaces: 4,52 kb
-	VTables: 128,13 kb
+	VTables: 128,18 kb
 	Interface Offsets: 25,86 kb
-	Type Definitions: 286,34 kb
+	Type Definitions: 286,60 kb
 	Images: 1,56 kb
 	Assemblies: 2,50 kb
 	Field Refs: 0,91 kb
 	Referenced Assemblies: 0,80 kb
-	Attribute Types Ranges: 71,23 kb
-	Attribute Types: 50,00 kb
+	Attribute Types Ranges: 71,37 kb
+	Attribute Types: 50,05 kb
 	Unresolved Virtual Call Parameter Types: 5,34 kb
 	Unresolved Virtual Call Parameter Ranges: 3,70 kb
 	Windows Runtime type names: 0,00 kb
 	Windows Runtime strings: 0,00 kb
-	Exported Types: 4,09 kb
+	Exported Types: 4,10 kb
 Codegen:
-	NullChecks : 47117
+	NullChecks : 47139
 Interop:
 	Windows Runtime boxed types : 0
 	Windows Runtime types with names : 0
@@ -103,8 +103,8 @@ Interop:
 	COM callable wrapper methods that were forwarded to call base class method : 0
 Compilation:
 	Total Files: 438
-	Files Compiled: 36
-	Cache Hits: 402
+	Files Compiled: 38
+	Cache Hits: 400
 	Cache Hit %: 91
 
 
@@ -117,8 +117,8 @@ Compilation:
 	AllAssemblyConversion: None
 
 ----Generated Files----
-Assembly-CSharp.cpp	487761
-Assembly-CSharp_Attr.cpp	45110
+Assembly-CSharp.cpp	514523
+Assembly-CSharp_Attr.cpp	57273
 GenericMethods.cpp	3199020
 GenericMethods1.cpp	3622164
 GenericMethods2.cpp	2276702
@@ -142,10 +142,10 @@ Generics6.cpp	2318137
 Generics7.cpp	2716576
 Generics8.cpp	3255248
 Generics9.cpp	3766162
-Il2CppCCalculateFieldValues.cpp	8169680
-Il2CppCCalculateTypeValues.cpp	7894387
-Il2CppCCFieldValuesTable.cpp	183117
-Il2CppCCTypeValuesTable.cpp	314535
+Il2CppCCalculateFieldValues.cpp	8176790
+Il2CppCCalculateTypeValues.cpp	7901193
+Il2CppCCFieldValuesTable.cpp	183288
+Il2CppCCTypeValuesTable.cpp	314820
 Il2CppCodeRegistration.cpp	6649
 Il2CppGenericAdjustorThunkTable.cpp	577849
 Il2CppGenericComDefinitions.cpp	173
@@ -242,8 +242,8 @@ UnityEngine.AssetBundleModule.cpp	38246
 UnityEngine.AssetBundleModule_Attr.cpp	80697
 UnityEngine.AudioModule.cpp	90583
 UnityEngine.AudioModule_Attr.cpp	119430
-UnityEngine.CoreModule.cpp	3547722
-UnityEngine.CoreModule_Attr.cpp	996499
+UnityEngine.CoreModule.cpp	3562219
+UnityEngine.CoreModule_Attr.cpp	1003582
 UnityEngine.CoreModule1.cpp	2878683
 UnityEngine.cpp	4560
 UnityEngine.DirectorModule.cpp	27690

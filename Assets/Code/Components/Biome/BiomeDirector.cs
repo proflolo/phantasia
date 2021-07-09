@@ -103,7 +103,7 @@ public class BiomeDirector : MonoBehaviour
                     float posX = (col) * 3.0f - 3.0f;
                     float rotationDegrees = Random.Range(0, 359);
                     float treeChance = Random.Range(0, 100);
-                    if (treeChance < 15)
+                    if (treeChance <= 15)
                     {
                         float xDelta = Random.Range(-0.5f, 0.5f);
                         float zDelta = Random.Range(-0.5f, 0.5f);
