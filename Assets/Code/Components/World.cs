@@ -25,4 +25,9 @@ public class World : MonoBehaviour
     {
         sig_circlesChanged.Invoke(i_numCircles);
     }
+
+    public void RequestAddXP(int i_xp)
+    {
+        Game.instance.AddXP(10);   
+    }
 }
