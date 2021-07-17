@@ -30,4 +30,11 @@ public class World : MonoBehaviour
     {
         Game.instance.AddXP(10);   
     }
+
+    public void RequestAddItem(ItemDef i_item, uint i_itemAmount)
+    {
+        Debug.Assert(i_item != null, "No puedes añadir un item nulo");
+        Debug.Assert(i_itemAmount > 0, "No puedes dar 0 de un item");
+        Game.instance.AddItem(i_item, i_itemAmount);
+    }
 }

@@ -27,15 +27,15 @@ public class Game
     private Game()
     {
         m_character = new Character();
+        m_inventory = new Inventory();
 
         Savedelegate savedelegate = new Savedelegate();
-        Savedelegate.LoadResult result = savedelegate.Load(out m_data, out m_character.m_data);
+        Savedelegate.LoadResult result = savedelegate.Load(out m_data, out m_character.m_data, out m_inventory.m_data);
         if(result == Savedelegate.LoadResult.Failed)
         {
             //Datos por defecto!
             m_character = new Character();
             m_data = new SaveData();
-            m_data.numTimesXPGiven = 0;
         }
     }
 
@@ -50,9 +50,19 @@ public class Game
     public void AddXP(int i_xp)
     {
         m_character.AddXP(i_xp);
-        m_data.numTimesXPGiven++;
         //Guardar!
         Save();
+    }
+
+    public void AddItem(ItemDef i_item, uint i_itemAmount)
+    {
+        //Toma decisiones
+        bool accepted = true; //Calculo complejo de economia de juego
+        if(accepted)
+        {
+            m_inventory.AddItem(i_item, i_itemAmount);
+            Save();
+        }
     }
 
     private void Save()
@@ -60,14 +70,15 @@ public class Game
         //Codigo aqui
         //NO!
         Savedelegate saveDelegate = new Savedelegate();
-        saveDelegate.Save(m_data, m_character.m_data);
+        saveDelegate.Save(m_data, m_character.m_data, m_inventory.m_data);
     }
 
     private Character m_character;
+    private Inventory m_inventory;
 
     public struct SaveData
     {
-        public int numTimesXPGiven;
+        
 
     };
 
