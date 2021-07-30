@@ -26,11 +26,12 @@ public class Game
 
     private Game()
     {
+        m_database = new Database();
         m_character = new Character();
         m_inventory = new Inventory();
 
         Savedelegate savedelegate = new Savedelegate();
-        Savedelegate.LoadResult result = savedelegate.Load(out m_data, out m_character.m_data, out m_inventory.m_data);
+        Savedelegate.LoadResult result = savedelegate.Load(m_database, out m_data, out m_character.m_data, out m_inventory.m_data);
         if(result == Savedelegate.LoadResult.Failed)
         {
             //Datos por defecto!
@@ -44,6 +45,22 @@ public class Game
         get
         {
             return m_character;
+        }
+    }
+
+    public IDatabase database
+    {
+        get
+        {
+            return m_database;
+        }
+    }
+
+    public IInvetory inventory
+    {
+        get
+        {
+            return m_inventory;
         }
     }
 
@@ -73,6 +90,7 @@ public class Game
         saveDelegate.Save(m_data, m_character.m_data, m_inventory.m_data);
     }
 
+    private Database m_database;
     private Character m_character;
     private Inventory m_inventory;
 

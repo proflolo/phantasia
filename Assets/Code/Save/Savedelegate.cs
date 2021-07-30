@@ -18,7 +18,7 @@ public class Savedelegate
         writer.Write(i_inventorySaveData.stock.Count);
         foreach(KeyValuePair<ItemDef, uint> kv in i_inventorySaveData.stock)
         {
-            writer.Write(kv.Key.itemId);
+            writer.Write(kv.Key.name);
             writer.Write(kv.Value);
         }
         writer.Close();
@@ -31,7 +31,7 @@ public class Savedelegate
         Ok,
         Failed
     }
-    public LoadResult Load(out Game.SaveData o_saveData, out Character.SaveData o_characterSaveData, out Inventory.SaveData o_inventoryData)
+    public LoadResult Load(Database i_database, out Game.SaveData o_saveData, out Character.SaveData o_characterSaveData, out Inventory.SaveData o_inventoryData)
     {
         o_saveData = new Game.SaveData();
         o_characterSaveData = new Character.SaveData();
@@ -51,6 +51,23 @@ public class Savedelegate
             {
                 o_characterSaveData.xp = reader.ReadInt32();
                 o_characterSaveData.level = reader.ReadInt32();
+                int numItemsInInventory = reader.ReadInt32();
+                for(int i = 0; i < numItemsInInventory; ++i)
+                {
+                    //Leer un item
+                    string itemName = reader.ReadString();
+                    uint amount = reader.ReadUInt32();
+                    ItemDef item = i_database.FindItemByName(itemName);
+                    if(item)
+                    {
+                        o_inventoryData.stock.Add(item, amount);
+                    }
+                    else
+                    {
+                        //qué hago con el item que no existe???
+                        Debug.Assert(false, "Item con nombre " + itemName + " no existe en la BD");
+                    }
+                }
             }
             reader.Close();
             file.Close();
