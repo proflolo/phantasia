@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 74fbc624bf5f6794fa92592a1daba5d3
+guid: 3ff4aee96ef7c0a47a5abe196eaa01c7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -634345081616760892
-    second: title_background
-  - first:
-      213: -8414190117761544801
-    second: background
-  - first:
-      213: 812884502178805489
-    second: deco_right
-  - first:
-      213: -7130087653275561397
-    second: deco_left
+      213: 4299675006995196408
+    second: lizardman_idle
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -115,85 +106,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: title_background
+      name: lizardman_idle
       rect:
         serializedVersion: 2
-        x: 252
-        y: 920
-        width: 101
-        height: 91
+        x: 36
+        y: 1247
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 30, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cf7739528a5237f0800000000000000
-      internalID: -634345081616760892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 839
-        width: 221
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9d883e0baaca3b80800000000000000
-      internalID: -8414190117761544801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: deco_right
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 596
-        width: 122
-        height: 230
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f6b9cbd522f74b00800000000000000
-      internalID: 812884502178805489
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: deco_left
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 625
-        width: 99
-        height: 187
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b429c116e07dc0d90800000000000000
-      internalID: -7130087653275561397
+      spriteID: 8f9e29163a38bab30800000000000000
+      internalID: 4299675006995196408
       vertices: []
       indices: 
       edges: []
@@ -201,7 +129,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a98998bf42246e340a77a6fc5823d43e
+    spriteID: b6d454c794c5ea14c804e50ac547400b
     internalID: 0
     vertices: []
     indices: 
@@ -210,7 +138,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

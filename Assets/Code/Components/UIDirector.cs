@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class UIDirector : MonoBehaviour
 {
     [SerializeField] GameObject m_blurWidget;
     [SerializeField] GameObject m_pauseMenu;
+    [SerializeField] GameObject m_explorationMenu;
+    [SerializeField] GameObject m_battleMenu;
 
 
-    int m_numCircles = 0;
+    Animator m_animator;
 
     // Start is called before the first frame update
     private void Awake()
     {
         Debug.Assert(m_blurWidget != null, "Blur widget not set in UI Director");
         Debug.Assert(m_pauseMenu != null, "Pause menu not set in UI Director");
+        Debug.Assert(m_explorationMenu != null, "Exploration menu not set in UI Director");
+        Debug.Assert(m_battleMenu != null, "Battle menu not set in UI Director");
+        m_animator = GetComponent<Animator>();
     }
 
 
@@ -43,13 +49,16 @@ public class UIDirector : MonoBehaviour
 
     }
 
-    public void OnNumCirclesChanged(int i_numCircles)
+
+   
+    public void TransitionToBattle()
     {
-        m_numCircles = i_numCircles;
+        m_animator.SetBool("in_battle", true);
     }
 
-    public int GetNumCircles()
+
+    public void TransitionToExploration()
     {
-        return m_numCircles;
+        m_animator.SetBool("in_battle", false);
     }
 }

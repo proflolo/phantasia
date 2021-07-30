@@ -25,7 +25,7 @@ public class CircleCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_text.text = string.Format("Vueltas: {0}", m_director.GetNumCircles());
+        
     }
 
 }
