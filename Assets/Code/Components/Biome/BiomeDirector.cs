@@ -9,26 +9,43 @@ public class BiomeDirector : MonoBehaviour
     [SerializeField] BiomeDef[] m_biomes;
     class MapData
     {
-        public MapData()
+        public MapData(IList<IList<bool>> i_map, int i_width, int i_height)
         {
-            m_cells = new int[][]
-                {
-                    new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-                    new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                    new int[] { 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 },
-                    new int[] { 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 },
-                    new int[] { 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1 },
-                    new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                    new int[] { 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1 },
-                    new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                    new int[] { 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1 },
-                    new int[] { 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
-                    new int[] { 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
-                };
+            m_cells = i_map;
+            width = i_width;
+            height = i_height;
+            //m_cells = new int[][]
+            //    {
+            //        new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+            //        new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+            //        new int[] { 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 },
+            //        new int[] { 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 },
+            //        new int[] { 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1 },
+            //        new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+            //        new int[] { 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1 },
+            //        new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+            //        new int[] { 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1 },
+            //        new int[] { 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
+            //        new int[] { 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+            //    };
         }
 
-        public int[][] m_cells;
+        public int get(int i_row, int i_column)
+        {
+            bool value = m_cells[i_row][i_column];
+            if(value)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
+        public IList<IList<bool>> m_cells;
+        public int height;
+        public int width;
     }
 
     private void Awake()
@@ -58,26 +75,29 @@ public class BiomeDirector : MonoBehaviour
 
     MapData GenerateMap()
     {
-        return new MapData();
+        //Conectar algoritmo de generacion de laberintos
+        MapGen mapGen = new MapGen(31, 31);
+        mapGen.addExtraPaths(50, true);
+        return new MapData(mapGen.getMap(), 31, 31);
     }
 
     void InstantiateMap(MapData i_mapData)
     {
         float deltaX = 0;
-        float deltaZ = ((i_mapData.m_cells.Length - 2) / 2) * 6.0f;
-        for (int row = 0; row < i_mapData.m_cells.Length - 2; row += 2)
+        float deltaZ = ((i_mapData.height - 2) / 2) * 6.0f;
+        for (int row = 0; row < i_mapData.height - 2; row += 2)
         {
-            for (int col = 0; col < i_mapData.m_cells[row].Length - 2; col += 2)
+            for (int col = 0; col < i_mapData.width - 2; col += 2)
             {
-                long tileId =       i_mapData.m_cells[row+2][col+2] * 100000000
-                                +   i_mapData.m_cells[row+2][col+1] * 10000000
-                                +   i_mapData.m_cells[row+2][col+0] * 1000000
-                                +   i_mapData.m_cells[row+1][col+2] * 100000
-                                +   i_mapData.m_cells[row+1][col+1] * 10000
-                                +   i_mapData.m_cells[row+1][col+0] * 1000
-                                +   i_mapData.m_cells[row+0][col+2] * 100
-                                +   i_mapData.m_cells[row+0][col+1] * 10
-                                +   i_mapData.m_cells[row+0][col+0] * 1;
+                long tileId =       i_mapData.get(row+2,col+2) * 100000000
+                                +   i_mapData.get(row+2,col+1) * 10000000
+                                +   i_mapData.get(row+2,col+0) * 1000000
+                                +   i_mapData.get(row+1,col+2) * 100000
+                                +   i_mapData.get(row+1,col+1) * 10000
+                                +   i_mapData.get(row+1,col+0) * 1000
+                                +   i_mapData.get(row+0,col+2) * 100
+                                +   i_mapData.get(row+0,col+1) * 10
+                                +   i_mapData.get(row + 0, col+0) * 1;
                 string pieceName = "piece_" + tileId.ToString("D9");
                 Transform childTransform = m_pieces.transform.Find(pieceName);
                 Debug.Assert(childTransform != null);
@@ -91,13 +111,13 @@ public class BiomeDirector : MonoBehaviour
             deltaZ -= 6.0f;
         }
 
-        int numRows = i_mapData.m_cells.Length;
+        int numRows = i_mapData.height;
         for (int row = 0; row < numRows; row += 1)
         {
-            int numCols = i_mapData.m_cells[row].Length;
+            int numCols = i_mapData.width;
             for (int col = 0; col < numCols; col += 1)
             {
-                if (i_mapData.m_cells[row][col] == 1)
+                if (i_mapData.get(row,col) == 1)
                 {
                     float posZ = (numRows - row - 1) * 3.0f - 3.0f;
                     float posX = (col) * 3.0f - 3.0f;
