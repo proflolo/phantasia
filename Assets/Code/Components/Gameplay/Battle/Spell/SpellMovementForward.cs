@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellMovementForward : MonoBehaviour
+public class SpellMovementForward : SpellBehaviour
 {
     ShapeProjectileForward m_shapeDef;
     BattleWorld m_world;
@@ -10,9 +10,12 @@ public class SpellMovementForward : MonoBehaviour
     Vector3 m_launchDirection;
     int m_ignoreInitialCollisions;
     List<Collider> m_collidersToIgnore;
+    float m_aliveTime = 0.0f;
+   
     // Start is called before the first frame update
     void Awake()
     {
+        _Awake();
         m_world = GetComponentInParent<BattleWorld>();
         m_collidersToIgnore = new List<Collider>();
     }
@@ -21,6 +24,11 @@ public class SpellMovementForward : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + m_launchDirection * 0.03f;
+        m_aliveTime += Time.deltaTime;
+        if(m_aliveTime > 10.0f)
+        {
+            ScheduleDestruction();
+        }
     }
 
     private void FixedUpdate()
@@ -57,7 +65,8 @@ public class SpellMovementForward : MonoBehaviour
                 {
                     EffectHandler.ExecuteEffect(effect, m_caster, m_world, i_collision.contacts[0].point, i_collision.contacts[0].normal);
                 }
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                ScheduleDestruction();
             }
         }
     }

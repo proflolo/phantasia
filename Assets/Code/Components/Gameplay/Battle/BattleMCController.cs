@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class BattleMCController : MonoBehaviour
 {
     [SerializeField] GameObject dummyProjectile;
+    [SerializeField] GameObject dummyExplosion;
 
     BattleWorld m_battleWorld;
 
@@ -13,6 +14,7 @@ public class BattleMCController : MonoBehaviour
     {
         m_battleWorld = GetComponentInParent<BattleWorld>();
         Debug.Assert(dummyProjectile != null, "No tenemos dummy Projectile");
+        Debug.Assert(dummyExplosion != null, "No tenemos dummy Explosion");
     }
 
     // Start is called before the first frame update
@@ -33,11 +35,13 @@ public class BattleMCController : MonoBehaviour
         {
             //Lanzar el hechizo
             //TODO
-            List<Effect> onImpactEffects = new List<Effect>();
-            onImpactEffects.Add(new EffectDamage());
-            ShapeProjectileForward bouncedProjectile = new ShapeProjectileForward(dummyProjectile, onImpactEffects);
-            onImpactEffects.Add(new EffectSpawn(bouncedProjectile));
+            List<Effect> explosionEffects = new List<Effect>();
+            explosionEffects.Add(new EffectDamage());
+            //ShapeProjectileForward bouncedProjectile = new ShapeProjectileForward(dummyProjectile, onImpactEffects);
+            ShapeExplosion explosion = new ShapeExplosion(dummyExplosion, explosionEffects, 1.0f, 3.0f);
 
+            List<Effect> onImpactEffects = new List<Effect>();
+            onImpactEffects.Add(new EffectSpawn(explosion));
             ShapeProjectileForward projectile = new ShapeProjectileForward(dummyProjectile, onImpactEffects);
             EffectSpawn spawn = new EffectSpawn(projectile);
             

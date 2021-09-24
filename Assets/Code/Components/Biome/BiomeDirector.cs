@@ -32,7 +32,7 @@ public class BiomeDirector : MonoBehaviour
 
         public int get(int i_row, int i_column)
         {
-            bool value = m_cells[i_row][i_column];
+            bool value = m_cells[i_column][i_row];
             if(value)
             {
                 return 1;

@@ -6,6 +6,7 @@ public interface IDatabase
 {
     ItemDef FindItemByName(string i_name);
     List<ItemDef> ListAllManaItems();
+    List<RuneDef> ListAllRunes();
 }
 
 public class Database: IDatabase
@@ -13,11 +14,18 @@ public class Database: IDatabase
     public Database()
     {
         m_itemsByName = new Dictionary<string, ItemDef>();
+        m_runesByName = new Dictionary<string, RuneDef>();
         //Carga
         ItemDef[] allItems = Resources.LoadAll<ItemDef>("Database/Items/");
         foreach(ItemDef item in allItems)
         {
             m_itemsByName.Add(item.name, item);
+        }
+
+        RuneDef[] allRunes = Resources.LoadAll<RuneDef>("Database/Runes/");
+        foreach (RuneDef rune in allRunes)
+        {
+            m_runesByName.Add(rune.name, rune);
         }
     }
 
@@ -43,5 +51,16 @@ public class Database: IDatabase
         return allMana;
     }
 
+    public List<RuneDef> ListAllRunes()
+    {
+        List<RuneDef> allRunes = new List<RuneDef>();
+        foreach (RuneDef rune in m_runesByName.Values)
+        {
+            allRunes.Add(rune);
+        }
+        return allRunes;
+    }
+
     Dictionary<string, ItemDef> m_itemsByName;
+    Dictionary<string, RuneDef> m_runesByName;
 }

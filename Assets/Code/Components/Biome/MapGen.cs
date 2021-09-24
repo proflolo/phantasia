@@ -113,8 +113,8 @@ public class MapGen
     {
         return !(i_coordinate.x < 0 
             || i_coordinate.y < 0 
-            || i_coordinate.x > width - 1 
-            || i_coordinate.y > height - 1 
+            || i_coordinate.x > height - 1 
+            || i_coordinate.y > width - 1 
             || cells[i_coordinate.x][i_coordinate.y].visited);
     }
 
