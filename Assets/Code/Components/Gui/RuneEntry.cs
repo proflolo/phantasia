@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(RuneDisplay))]
+[RequireComponent(typeof(Button))]
 public class RuneEntry : MonoBehaviour
 {
-    [SerializeField] Text m_runeLetter;
-    [SerializeField] Text m_runeDescription;
+    RuneDisplay m_display;
 
     private void Awake()
     {
-        Debug.Assert(m_runeDescription != null, "No hay runeDescription");
-        Debug.Assert(m_runeLetter != null, "No hay runeLetter");
+        m_display = GetComponent<RuneDisplay>();
     }
 
     public void Configure(RuneDef i_rune)
     {
-        m_runeLetter.text = i_rune.letter;
-        m_runeDescription.text = i_rune.description;
+        m_display.Configure(i_rune);
     }
 }

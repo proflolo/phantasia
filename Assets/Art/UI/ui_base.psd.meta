@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: -7130087653275561397
     second: deco_left
+  - first:
+      213: 4995681339338596550
+    second: window_background
+  - first:
+      213: 5900337750342498443
+    second: button_background_idle
+  - first:
+      213: -6878329305259687698
+    second: button_background_focused
+  - first:
+      213: 7627733754746656784
+    second: button_background_selected
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -194,6 +206,90 @@ TextureImporter:
       bones: []
       spriteID: b429c116e07dc0d90800000000000000
       internalID: -7130087653275561397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: window_background
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 711
+        width: 113
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c0235ab5b9345540800000000000000
+      internalID: 4995681339338596550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_background_idle
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 920
+        width: 68
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88fdff2ce532e150800000000000000
+      internalID: 5900337750342498443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_background_focused
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 918
+        width: 77
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee046d790f34b80a0800000000000000
+      internalID: -6878329305259687698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_background_selected
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 920
+        width: 62
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0185eecbf672bd960800000000000000
+      internalID: 7627733754746656784
       vertices: []
       indices: 
       edges: []
