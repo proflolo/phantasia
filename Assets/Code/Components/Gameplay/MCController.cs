@@ -11,10 +11,13 @@ public class MCController : MonoBehaviour
     Vector3 m_velocity;
     Vector3 m_lookAt;
     bool m_actionRequested = false;
+    World m_world;
 
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
+        m_world = GetComponentInParent<World>();
+        Debug.Assert(m_world != null, "World es nulo en el MCController!");
     }
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,14 @@ public class MCController : MonoBehaviour
         if (m_velocity.magnitude > 0.0f)
         {
             m_lookAt = m_velocity.normalized;
+        }
+    }
+
+    void OnPause(InputValue i_value)
+    {
+        if (i_value.isPressed)
+        {
+            m_world.RequestPause();
         }
     }
 

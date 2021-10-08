@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 118
   m_description: Damage (Low)
+  m_forgeCost: 5
+  m_castCostBase: 1
   m_type: 1

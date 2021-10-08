@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 98
   m_description: Projectile
+  m_forgeCost: 15
+  m_castCostBase: 2
   m_type: 0

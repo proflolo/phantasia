@@ -41,4 +41,9 @@ public class World : MonoBehaviour
     {
         m_gameDirector.RequestBattleStart(i_battleDef);
     }
+
+    public void RequestPause()
+    {
+        m_gameDirector.UserRequestedPause();
+    }
 }

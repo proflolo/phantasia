@@ -31,8 +31,6 @@ public class GameDirector : MonoBehaviour
 
     public void UserRequestedPause()
     {
-        int level = Game.instance.character.GetLevel();
-
        switch (m_pauseState)
         {
             case PauseState.Active:

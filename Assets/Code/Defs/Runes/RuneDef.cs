@@ -7,6 +7,8 @@ public class RuneDef : ScriptableObject
 {
     [SerializeField] char m_runeLetter;
     [SerializeField] string m_description;
+    [SerializeField] uint m_forgeCost;
+    [SerializeField] uint m_castCostBase;
     public enum Type
     {
         Shape,
@@ -35,6 +37,22 @@ public class RuneDef : ScriptableObject
         get
         {
             return m_type;
+        }
+    }
+
+    public uint forgeCost
+    {
+        get
+        {
+            return m_forgeCost;
+        }
+    }
+
+    public uint castCostBase
+    {
+        get
+        {
+            return m_castCostBase;
         }
     }
 }

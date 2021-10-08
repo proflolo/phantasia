@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 111
   m_description: Explosion
+  m_forgeCost: 10
+  m_castCostBase: 1
   m_type: 0
