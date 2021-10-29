@@ -12,7 +12,8 @@ public class RuneDef : ScriptableObject
     public enum Type
     {
         Shape,
-        Effect
+        Effect,
+        Special
     }
     [SerializeField] Type m_type;
 

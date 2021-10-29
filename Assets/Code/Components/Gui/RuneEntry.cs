@@ -18,4 +18,9 @@ public class RuneEntry : MonoBehaviour
     {
         m_display.Configure(i_rune);
     }
+
+    public RuneDef GetRune()
+    {
+        return m_display.GetRune();
+    }
 }

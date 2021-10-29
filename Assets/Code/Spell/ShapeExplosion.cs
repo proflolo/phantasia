@@ -44,5 +44,17 @@ public class ShapeExplosion : Shape
             return m_radius;
         }
     }
-    
+
+    public override uint ComputeCastCost()
+    {
+        uint cost = 0;
+        foreach (Effect effect in m_onImpactEffect)
+        {
+            cost += effect.ComputeCastCost();
+        }
+
+        return cost;
+    }
+
+
 }

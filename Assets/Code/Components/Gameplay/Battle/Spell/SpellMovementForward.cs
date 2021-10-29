@@ -63,7 +63,7 @@ public class SpellMovementForward : SpellBehaviour
             {
                 foreach (Effect effect in m_shapeDef.GetOnImpactEffects())
                 {
-                    EffectHandler.ExecuteEffect(effect, m_caster, m_world, i_collision.contacts[0].point, i_collision.contacts[0].normal);
+                    EffectHandler.ExecuteEffect(effect, m_caster, m_world, i_collision.contacts[0].point, i_collision.contacts[0].normal, i_collision.gameObject);
                 }
                 //Destroy(gameObject);
                 ScheduleDestruction();

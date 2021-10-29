@@ -24,6 +24,14 @@ public class ShapeProjectileForward : Shape
     {
         return m_onImpactEffect;
     }
+    public override uint ComputeCastCost()
+    {
+        uint cost = 0;
+        foreach (Effect effect in m_onImpactEffect)
+        {
+            cost += effect.ComputeCastCost();
+        }
 
-    
+        return cost;
+    }
 }

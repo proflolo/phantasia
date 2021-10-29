@@ -17,3 +17,5 @@ MonoBehaviour:
   m_forgeCost: 10
   m_castCostBase: 1
   m_type: 0
+  m_explosionTemplate: {fileID: 5422998649237343065, guid: bf5880a632af5584c8e38f73d592a975, type: 3}
+  m_radius: 3

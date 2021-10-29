@@ -47,7 +47,8 @@ public class UIDirector : MonoBehaviour
         m_blurWidget.gameObject.SetActive(true);
         //m_pauseMenu.gameObject.SetActive(true);
         //m_spellForgeMenu.gameObject.SetActive(true);
-        StartCoroutine(ExecuteSpellForgeMenu());
+        IEnumerator menuExecution = ExecuteSpellForgeMenu();
+        StartCoroutine(menuExecution);
         //await ExecuteSpellForgeMenu2(m_spellForgeMenu);
 
     }
@@ -67,7 +68,6 @@ public class UIDirector : MonoBehaviour
     //    //Pedir que se despause
     //    //m_director.UserRequestedPause();
     //}
-
     
 
     IEnumerator ExecuteSpellForgeMenu()
@@ -80,6 +80,9 @@ public class UIDirector : MonoBehaviour
         m_spellForgeMenu.gameObject.SetActive(false);
         //Pedir que se despause
         m_director.UserRequestedPause();
+        //Batalla time!
+        MenuFuture<uint> trainingBattle = m_director.RequestTrainingBattle(spell);
+        yield return trainingBattle;
     }
         
 

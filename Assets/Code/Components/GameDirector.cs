@@ -6,7 +6,7 @@ public class GameDirector : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject m_explorationWorld;
-    [SerializeField] GameObject m_battleWorld;
+    [SerializeField] BattleWorld m_battleWorld;
     [SerializeField] UIDirector m_ui;
     enum PauseState
     {
@@ -41,7 +41,7 @@ public class GameDirector : MonoBehaviour
                         m_explorationWorld.SetActive(false);
                         break;
                     case GameState.Battle:
-                        m_battleWorld.SetActive(false);
+                        m_battleWorld.gameObject.SetActive(false);
                         break;
                 }
                 //Activar el blurr
@@ -56,7 +56,7 @@ public class GameDirector : MonoBehaviour
                         m_explorationWorld.SetActive(true);
                         break;
                     case GameState.Battle:
-                        m_battleWorld.SetActive(true);
+                        m_battleWorld.gameObject.SetActive(true);
                         break;
                 }
                 //desactivar el blurr
@@ -85,14 +85,15 @@ public class GameDirector : MonoBehaviour
             return;
         }
 
-        EnterBattle(i_battleDef);
+        EnterBattle(i_battleDef, null);
     }
 
-    void EnterBattle(BattleDef battleDef)
+    void EnterBattle(BattleDef battleDef, Spell i_spellToTest)
     {
         //TODO: Que sea con los enemigos que tocan
         m_explorationWorld.SetActive(false);
-        m_battleWorld.SetActive(true);
+        m_battleWorld.Initialize(i_spellToTest);
+        m_battleWorld.gameObject.SetActive(true);
         m_gameState = GameState.Battle;
         m_ui.TransitionToBattle();
     }
@@ -109,10 +110,17 @@ public class GameDirector : MonoBehaviour
         
     }
 
+    public MenuFuture<uint> RequestTrainingBattle(Spell i_spellToTest)
+    {
+        MenuResult<uint> result = new MenuResult<uint>(0);
+        EnterBattle(new BattleDef(), i_spellToTest);
+        return result;
+    }
+
     void EnterExploration()
     {
         m_explorationWorld.SetActive(true);
-        m_battleWorld.SetActive(false);
+        m_battleWorld.gameObject.SetActive(false);
         m_gameState = GameState.Exploration;
         m_ui.TransitionToExploration();
     }

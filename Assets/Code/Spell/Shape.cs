@@ -12,4 +12,5 @@ public abstract class Shape
         public Vector3 normal;
     }
     public abstract void CreateFor(Params i_caster);
+    public abstract uint ComputeCastCost();
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   m_forgeCost: 5
   m_castCostBase: 1
   m_type: 1
+  m_damage: 1

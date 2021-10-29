@@ -13,19 +13,14 @@ public class Spell
     {
         m_effects = i_initialEffects;
         //Coste de lanzamiento
-    }
-
-    public Spell(IList<RuneDef> i_runes)
-    {
-        //magia de la forja
-        //Contaremos los costes (forja y lanzamiento)
         m_forgeCost = 0;
         m_castCost = 0;
-        foreach (RuneDef rune in i_runes)
+        foreach(Effect effect in i_initialEffects)
         {
-            m_forgeCost += rune.forgeCost;
+            m_castCost += effect.ComputeCastCost();
         }
     }
+   
 
     public IList<Effect> GetEffects()
     {

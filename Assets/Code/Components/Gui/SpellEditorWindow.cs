@@ -16,6 +16,7 @@ public class SpellEditorWindow : MonoBehaviour
     RuneEntry m_entryTemplate;
     RuneDisplay m_displayTemplate;
     MenuResult<Spell> m_result;
+    List<RuneEntry> m_runeKeys;
 
     // Start is called before the first frame update
     private void Awake()
@@ -31,19 +32,24 @@ public class SpellEditorWindow : MonoBehaviour
         //m_entryTemplate.transform.parent = null;
         m_entryTemplate.gameObject.SetActive(false);
         m_displayTemplate.gameObject.SetActive(false);
+        
 
     }
 
     private void UpdateCostTexts()
     {
-        Spell spell = new Spell(m_selectedRunes);
-        m_spellForgeCostText.text = spell.GetForgeCost().ToString();
-        m_spellCastCostText.text = spell.GetCastCost().ToString();
+        Spell spell = SpellParser.ParseSpell(m_selectedRunes, SpellParser.ValidationMode.Partial);
+        if(spell != null)
+        {
+            m_spellForgeCostText.text = spell.GetForgeCost().ToString();
+            m_spellCastCostText.text = spell.GetCastCost().ToString();
+        }
     }
 
     private void UpdateButtonStates()
     {
-        if(m_selectedRunes.Count == 0)
+        Spell result = SpellParser.ParseSpell(m_selectedRunes, SpellParser.ValidationMode.Full);
+        if(m_selectedRunes.Count == 0 || result == null)
         {
             m_forgeButton.interactable = false;
             m_tryButton.interactable = false;
@@ -58,10 +64,12 @@ public class SpellEditorWindow : MonoBehaviour
     public MenuFuture<Spell> Execute()
     {
         m_selectedRunes = new List<RuneDef>();
+        m_runeKeys = new List<RuneEntry>();
         m_result = new MenuResult<Spell>(null);
         UpdateCostTexts();
         UpdateButtonStates();
         UpdateRunesInSpell();
+        UpdateRuneButtons();
         return m_result;
     }
 
@@ -76,6 +84,7 @@ public class SpellEditorWindow : MonoBehaviour
     {
         if(m_dirty)
         {
+            m_runeKeys.Clear();
             foreach (RuneDef rune in Game.instance.database.ListAllRunes())
             {
                 GameObject newEntry = Instantiate(m_entryTemplate.gameObject, m_runesContainer.transform);
@@ -84,9 +93,11 @@ public class SpellEditorWindow : MonoBehaviour
                 runeEntry.Configure(rune);
                 Button runeButton = runeEntry.GetComponent<Button>();
                 runeButton.onClick.AddListener(() => RuneSelected(rune));
+                m_runeKeys.Add(runeEntry);
             }
             m_dirty = false;
             StartCoroutine(UpdateLayouts());
+            UpdateRuneButtons();
         }
 
     }
@@ -141,9 +152,27 @@ public class SpellEditorWindow : MonoBehaviour
             UpdateRunesInSpell();
             UpdateCostTexts();
             UpdateButtonStates();
+            UpdateRuneButtons();
         }
 
         StartCoroutine(UpdateLayouts());
+    }
+
+    void UpdateRuneButtons()
+    {
+        foreach(RuneEntry entry in m_runeKeys)
+        {
+            Button button = entry.GetComponent<Button>();
+            bool canBeAdded = false; //TODO
+            m_selectedRunes.Add(entry.GetRune());
+            Spell s = SpellParser.ParseSpell(m_selectedRunes, SpellParser.ValidationMode.Partial);
+            if(s != null)
+            {
+                canBeAdded = true;
+            }
+            button.interactable = canBeAdded;
+            m_selectedRunes.RemoveAt(m_selectedRunes.Count - 1);
+        }
     }
 
     public void OnBack()
@@ -158,6 +187,7 @@ public class SpellEditorWindow : MonoBehaviour
             UpdateCostTexts();
             UpdateRunesInSpell();
             UpdateButtonStates();
+            UpdateRuneButtons();
         }
     }
 
@@ -178,6 +208,12 @@ public class SpellEditorWindow : MonoBehaviour
     public void FinishPressed()
     {
         Debug.Assert(m_result != null);
-        m_result.SetReady(new Spell(m_selectedRunes));
+        m_result.SetReady(SpellParser.ParseSpell(m_selectedRunes, SpellParser.ValidationMode.Full));
+    }
+
+    public void OnTryPressed()
+    {
+        Spell result = SpellParser.ParseSpell(m_selectedRunes, SpellParser.ValidationMode.Full);
+        m_result.SetReady(result);
     }
 }
