@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class HumanoidVisual : MonoBehaviour
 {
-    Animator m_animator;
-    Rigidbody m_rigidBody;
+    protected Animator m_animator;
+    protected Rigidbody m_rigidBody;
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
@@ -21,7 +21,7 @@ public class HumanoidVisual : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void UpdateImpl()
     {
         float speedMagnitude = m_rigidBody.velocity.magnitude;
         m_animator.SetFloat("Speed", speedMagnitude / GameplayConstants.humanSpeed);

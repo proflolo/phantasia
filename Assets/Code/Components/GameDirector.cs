@@ -68,7 +68,8 @@ public class GameDirector : MonoBehaviour
 
     void Start()
     {
-        EnterExploration();
+        //EnterExploration();
+        EnterBattle(new BattleDef(), null);
     }
 
     // Update is called once per frame
