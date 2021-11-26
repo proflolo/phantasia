@@ -43,6 +43,8 @@ public class EnemyVisual : MonoBehaviour
             }
         }
 
+
+
         m_animator.SetFloat("Speed", m_rigidbody.velocity.magnitude);
     }
 
@@ -56,5 +58,15 @@ public class EnemyVisual : MonoBehaviour
     {
         m_animator.SetTrigger("Recover");
         m_stuned = false;
+    }
+
+    public void OnAttackStarted()
+    {
+        m_animator.SetTrigger("Melee_Attack");
+    }
+
+    public void OnAttackended()
+    {
+
     }
 }

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class AIBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public struct BattleAIInfo
     {
-        
+        public GameObject player;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
