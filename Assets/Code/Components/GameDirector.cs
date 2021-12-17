@@ -96,7 +96,7 @@ public class GameDirector : MonoBehaviour
         m_battleWorld.Initialize(i_spellToTest);
         m_battleWorld.gameObject.SetActive(true);
         m_gameState = GameState.Battle;
-        m_ui.TransitionToBattle();
+        m_ui.TransitionToBattle(m_battleWorld.player.gameObject);
     }
 
     public void RequestExplorationMode()

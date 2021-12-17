@@ -29,4 +29,12 @@ public class BattleWorld : MonoBehaviour
     }
 
     AIBase.BattleAIInfo m_battleAInfo;
+
+    public BattleMCController player
+    {
+        get
+        {
+            return m_player;
+        }
+    }
 }

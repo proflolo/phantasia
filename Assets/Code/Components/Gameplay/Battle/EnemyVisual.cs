@@ -35,11 +35,11 @@ public class EnemyVisual : MonoBehaviour
         {
             if (m_rigidbody.velocity.x < 0.0f)
             {
-                m_spriteRenderer.flipX = false;
+                //m_spriteRenderer.flipX = false;
             }
             else if (m_rigidbody.velocity.x > 0.0f)
             {
-                m_spriteRenderer.flipX = true;
+                //m_spriteRenderer.flipX = true;
             }
         }
 

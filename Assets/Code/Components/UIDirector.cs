@@ -9,7 +9,7 @@ public class UIDirector : MonoBehaviour
     [SerializeField] GameObject m_blurWidget;
     [SerializeField] GameObject m_pauseMenu;
     [SerializeField] GameObject m_explorationMenu;
-    [SerializeField] GameObject m_battleMenu;
+    [SerializeField] BattleWindow m_battleMenu;
     [SerializeField] SpellEditorWindow m_spellForgeMenu;
     [SerializeField] GameDirector m_director;
 
@@ -88,8 +88,9 @@ public class UIDirector : MonoBehaviour
 
 
    
-    public void TransitionToBattle()
+    public void TransitionToBattle(GameObject i_character)
     {
+        m_battleMenu.Initialize(i_character);
         m_animator.SetBool("in_battle", true);
     }
 

@@ -5,38 +5,56 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(ManaComponent))]
 [RequireComponent(typeof(Rigidbody))]
-public class BattleMCController : MonoBehaviour
+public class BattleMCController : CharacterController
 {
     [SerializeField] GameObject dummyProjectile;
     [SerializeField] GameObject dummyExplosion;
 
     BattleWorld m_battleWorld;
     ManaComponent m_manaComponent;
-    Rigidbody m_rigidBody;
-    Vector2 m_rawAxis;
-    Vector2 m_velocity;
 
+    IBattleMCState m_currentState;
+    BattleMCMove m_moveState;
+    BattleMCStun m_stunState;
+
+    Dictionary<IBattleMCState, IBattleMCState> m_onFinishTransitions;
+
+    
     private void Awake()
     {
         m_battleWorld = GetComponentInParent<BattleWorld>();
         m_manaComponent = GetComponent<ManaComponent>();
-        m_rigidBody = GetComponent<Rigidbody>();
+        Rigidbody rigidBody = GetComponent<Rigidbody>();
         Debug.Assert(dummyProjectile != null, "No tenemos dummy Projectile");
         Debug.Assert(dummyExplosion != null, "No tenemos dummy Explosion");
         Debug.Assert(m_manaComponent != null, "No tenemos Componente de Mana");
-        Debug.Assert(m_rigidBody != null, "No tenemos Componente de RigidBody");
+        Debug.Assert(rigidBody != null, "No tenemos Componente de RigidBody");
+
+        m_moveState = new BattleMCMove(rigidBody);
+        m_stunState = new BattleMCStun(rigidBody);
+        m_currentState = m_moveState;
+        m_onFinishTransitions = new Dictionary<IBattleMCState, IBattleMCState>();
+        m_onFinishTransitions.Add(m_stunState, m_moveState);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        m_rawAxis = Vector2.zero;
+        m_moveState.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_rigidBody.velocity = m_velocity;
+        IBattleMCState.Result result = m_currentState.Update();
+        if(result == IBattleMCState.Result.Finished)
+        {
+            //¿Qué hago?
+            if (m_onFinishTransitions.ContainsKey(m_currentState))
+            {
+                m_currentState = m_onFinishTransitions[m_currentState];
+            }
+        }
     }
 
     void OnCastSpell(InputValue i_value)
@@ -79,12 +97,34 @@ public class BattleMCController : MonoBehaviour
     }
     void OnMove(InputValue i_value)
     {
-        m_rawAxis = i_value.Get<Vector2>();
-        m_velocity = new Vector3(m_rawAxis.x * GameplayConstants.humanSpeed, 0.0f, 0.0f);
-        
+        m_currentState.OnMove(i_value);
+        m_moveState.OnMove(i_value);
     }
     void CastSpell(Spell i_spell)
     {
         EffectHandler.Cast(i_spell, gameObject, m_battleWorld, transform.position + Vector3.up * 1.0f, Vector3.right);
+    }
+
+    public override void ApplyImpact(Vector3 i_direction, float i_force)
+    {
+        m_stunState.Start(i_direction, i_force);
+        m_currentState = m_stunState;
+    }
+
+    public bool IsStunned()
+    {
+        return m_currentState == m_stunState;
+    }
+
+    public float GetRemainingStunTime()
+    {
+        if(IsStunned())
+        {
+            return m_stunState.GetRemainingSAtunTime();
+        }
+        else
+        {
+            return 0.0f;
+        }
     }
 }

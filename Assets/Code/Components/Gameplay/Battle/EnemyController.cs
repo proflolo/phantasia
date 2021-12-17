@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : CharacterController
 {
     [System.Serializable]
     class OnStunStarted : UnityEvent { }
@@ -76,6 +76,14 @@ public class EnemyController : MonoBehaviour
             m_attackingSeconds = 0.0f;
         }
        
+        if(m_velocity.x > 0.001f) //derecha
+        {
+            transform.rotation = Quaternion.AngleAxis(180.0f, Vector3.up);
+        }
+        else if (m_velocity.x < -0.001f)//izquierda
+        {
+            transform.rotation = Quaternion.AngleAxis(0.0f, Vector3.up);
+        }
     }
 
     public void OnLifeChanged(uint i_old, uint i_new)
@@ -122,5 +130,10 @@ public class EnemyController : MonoBehaviour
     public bool IsAttacking()
     {
         return m_attackingSeconds > 0.001f;
+    }
+
+    public override void ApplyImpact(Vector3 i_direction, float i_force)
+    {
+        
     }
 }

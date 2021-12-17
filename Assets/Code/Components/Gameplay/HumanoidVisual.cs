@@ -8,7 +8,13 @@ public class HumanoidVisual : MonoBehaviour
 {
     protected Animator m_animator;
     protected Rigidbody m_rigidBody;
+
     private void Awake()
+    {
+        AwakeImpl();
+    }
+
+    protected void AwakeImpl()
     {
         m_animator = GetComponent<Animator>();
         m_rigidBody = GetComponent<Rigidbody>();

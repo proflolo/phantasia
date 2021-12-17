@@ -9,9 +9,9 @@ public class LifeComponent : MonoBehaviour
     uint m_currentHP;
 
     [System.Serializable]
-    class OnLifeChanged : UnityEvent<uint /*old*/, uint /*new*/> { }
+    public class OnLifeChanged : UnityEvent<uint /*old*/, uint /*new*/> { }
 
-    [SerializeField] OnLifeChanged sig_onInteracted;
+    public OnLifeChanged sig_onInteracted;
 
     private void Awake()
     {
@@ -37,6 +37,22 @@ public class LifeComponent : MonoBehaviour
             uint original = m_currentHP;
             m_currentHP -= i_damage;
             sig_onInteracted.Invoke(original, m_currentHP);
+        }
+    }
+
+    public uint maxHP
+    {
+        get
+        {
+            return m_maxHP;
+        }
+    }
+
+    public uint currentHP
+    {
+        get
+        {
+            return m_currentHP;
         }
     }
 }
