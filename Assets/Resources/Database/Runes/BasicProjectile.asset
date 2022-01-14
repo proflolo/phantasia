@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 98
   m_description: Projectile
+  m_name:
+    m_TableReference:
+      m_TableCollectionName: GUID:0ec304428d6cd9541bc280fce807f8a0
+    m_TableEntryReference:
+      m_KeyId: 65533861888
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   m_forgeCost: 15
   m_castCostBase: 2
   m_type: 0
   m_projectileShape: {fileID: 6231974747872199838, guid: 025e1474f47a26245997cb2af3d42f86, type: 3}
+  references:
+    version: 2
+    RefIds: []

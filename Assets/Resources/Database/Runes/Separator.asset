@@ -14,6 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 46
   m_description: next
+  m_name:
+    m_TableReference:
+      m_TableCollectionName: GUID:0ec304428d6cd9541bc280fce807f8a0
+    m_TableEntryReference:
+      m_KeyId: 142579032064
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   m_forgeCost: 0
   m_castCostBase: 0
   m_type: 2
+  references:
+    version: 2
+    RefIds: []

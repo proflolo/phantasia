@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 119
   m_description: Damage (Med)
+  m_name:
+    m_TableReference:
+      m_TableCollectionName: GUID:0ec304428d6cd9541bc280fce807f8a0
+    m_TableEntryReference:
+      m_KeyId: 116565958656
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   m_forgeCost: 5
   m_castCostBase: 5
   m_type: 1
   m_damage: 3
+  references:
+    version: 2
+    RefIds: []

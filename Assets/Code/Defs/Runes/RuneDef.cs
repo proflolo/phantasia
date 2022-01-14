@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 //[CreateAssetMenu(fileName = "Item Definition", menuName = "Game/Item Definition", order = 2)]
 public class RuneDef : ScriptableObject
 {
     [SerializeField] char m_runeLetter;
-    [SerializeField] string m_description;
+    [SerializeField] LocalizedString m_name;
     [SerializeField] uint m_forgeCost;
     [SerializeField] uint m_castCostBase;
     public enum Type
@@ -25,11 +26,11 @@ public class RuneDef : ScriptableObject
         }
     }
 
-    public string description
+    public LocalizedString description
     {
         get
         {
-            return m_description;
+            return m_name;
         }
     }
 

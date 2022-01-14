@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -208,7 +209,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8ec87ac16ded9fd10800000000000000
-      internalID: 2160002507485973736
+      internalID: 741616452522788395
       vertices: []
       indices: 
       edges: []
@@ -328,6 +329,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      lizardman_walk_02: -6741350100619952626
+      lizardman_walk_01: -879912699942774296
+      lizardman_stun: -2959695786925549607
+      lizardman_attack_03: 6570350797562140858
+      lizardman_walk_00: -3677325164843289307
+      lizardman_attack_01: -1954581603141243238
+      lizardman_idle: 4299675006995196408
+      lizardman_attack_00: 6677744332094548217
+      lizardman_attack_02: 741616452522788395
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

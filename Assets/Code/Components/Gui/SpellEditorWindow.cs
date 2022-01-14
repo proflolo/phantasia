@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization.Components;
 
+[RequireComponent(typeof(SpellUI))]
 public class SpellEditorWindow : MonoBehaviour
 {
     List<RuneDef> m_selectedRunes;
     [SerializeField] RectTransform m_runesContainer;
     [SerializeField] RectTransform m_spellContainer;
-    [SerializeField] Text m_spellCastCostText;
-    [SerializeField] Text m_spellForgeCostText;
+    //[SerializeField] Text m_spellCastCostText;
+    //[SerializeField] Text m_spellForgeCostText;
+    SpellUI m_spellUI;
     [SerializeField] Button m_forgeButton;
     [SerializeField] Button m_tryButton;
+    
 
     RuneEntry m_entryTemplate;
     RuneDisplay m_displayTemplate;
@@ -21,10 +25,10 @@ public class SpellEditorWindow : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        m_spellUI = GetComponent<SpellUI>();
         Debug.Assert(m_runesContainer != null, "Runes Container es nulo");
         Debug.Assert(m_spellContainer != null, "Spell Container es nulo");
-        Debug.Assert(m_spellCastCostText != null, "Spell Cast Cost es nulo");
-        Debug.Assert(m_spellForgeCostText != null, "Spell Forge Cost es nulo");
+        Debug.Assert(m_spellUI != null, "No tenemos Spell UI");
         Debug.Assert(m_forgeButton != null, "Forge Button es nulo");
         Debug.Assert(m_tryButton != null, "Try Button es nulo");
         m_entryTemplate = m_runesContainer.GetChild(0).GetComponent<RuneEntry>();
@@ -32,7 +36,6 @@ public class SpellEditorWindow : MonoBehaviour
         //m_entryTemplate.transform.parent = null;
         m_entryTemplate.gameObject.SetActive(false);
         m_displayTemplate.gameObject.SetActive(false);
-        
 
     }
 
@@ -41,8 +44,7 @@ public class SpellEditorWindow : MonoBehaviour
         Spell spell = SpellParser.ParseSpell(m_selectedRunes, SpellParser.ValidationMode.Partial);
         if(spell != null)
         {
-            m_spellForgeCostText.text = spell.GetForgeCost().ToString();
-            m_spellCastCostText.text = spell.GetCastCost().ToString();
+            m_spellUI.spell = spell;
         }
     }
 

@@ -13,7 +13,18 @@ MonoBehaviour:
   m_Name: SpawnForward
   m_EditorClassIdentifier: 
   m_runeLetter: 88
-  m_description: Spawn
+  m_name:
+    m_TableReference:
+      m_TableCollectionName: GUID:0ec304428d6cd9541bc280fce807f8a0
+    m_TableEntryReference:
+      m_KeyId: 160996220928
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   m_forgeCost: 50
   m_castCostBase: 10
   m_type: 1
+  references:
+    version: 2
+    RefIds: []

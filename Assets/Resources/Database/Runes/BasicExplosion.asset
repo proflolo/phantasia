@@ -14,8 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_runeLetter: 111
   m_description: Explosion
+  m_name:
+    m_TableReference:
+      m_TableCollectionName: GUID:0ec304428d6cd9541bc280fce807f8a0
+    m_TableEntryReference:
+      m_KeyId: 8118034432
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   m_forgeCost: 10
   m_castCostBase: 1
   m_type: 0
   m_explosionTemplate: {fileID: 5422998649237343065, guid: bf5880a632af5584c8e38f73d592a975, type: 3}
   m_radius: 3
+  references:
+    version: 2
+    RefIds: []

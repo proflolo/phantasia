@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization.Components;
 
 public class RuneDisplay : MonoBehaviour
 {
     [SerializeField] Text m_runeLetter;
-    [SerializeField] Text m_runeDescription;
+    [SerializeField] LocalizeStringEvent m_runeDescription;
     [SerializeField] Text m_forgeCost;
     [SerializeField] Text m_castCost;
     RuneDef m_displayedRune;
@@ -21,7 +22,7 @@ public class RuneDisplay : MonoBehaviour
     {
         m_displayedRune = i_rune;
         m_runeLetter.text = i_rune.letter;
-        m_runeDescription.text = i_rune.description;
+        m_runeDescription.StringReference = i_rune.description;
         if(m_forgeCost)
         {
             m_forgeCost.text = i_rune.forgeCost.ToString();
