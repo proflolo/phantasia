@@ -6,16 +6,20 @@ public class BattleWorld : MonoBehaviour
 {
     Spell m_trainingSpell;
     [SerializeField] BattleMCController m_player;
-
+    Biome m_currentBiome;
+    [SerializeField] ScenarioDirector m_scenarioDirector;
     private void Awake()
     {
+        Debug.Assert(m_scenarioDirector != null, "No tienes scenario director");
         Debug.Assert(m_player != null, "No hay jugador!");
         m_battleAInfo = new AIBase.BattleAIInfo();
         m_battleAInfo.player = m_player.gameObject;
     }
-    public void Initialize(Spell i_trainingSpell)
+    public void Initialize(Spell i_trainingSpell, Biome i_currentBiome)
     {
         m_trainingSpell = i_trainingSpell;
+        m_currentBiome = i_currentBiome;
+        m_scenarioDirector.GenerateMap(i_currentBiome);
     }
 
     public Spell GetTrainingSpell()

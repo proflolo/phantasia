@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Globalization;
 
 public class SpellUI : LocalizationVariable
 {
@@ -8,17 +9,19 @@ public class SpellUI : LocalizationVariable
 
     
 
-    public uint cost
+    public string cost
     {
         get
         {
             if(m_spell == null)
             {
-                return 0;
+                return "0";
             }
             else
             {
-                return m_spell.GetCastCost();
+                //return m_spell.GetCastCost();
+                uint value = 123456;
+                return value.ToString(CultureInfo.CurrentUICulture.NumberFormat);
             }
         }
     }

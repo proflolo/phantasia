@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameDirector : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] GameObject m_explorationWorld;
+    [SerializeField] World m_explorationWorld;
     [SerializeField] BattleWorld m_battleWorld;
     [SerializeField] UIDirector m_ui;
+    [SerializeField] BiomeDirector m_biomeDirector;
     enum PauseState
     {
         Active,
@@ -26,6 +27,7 @@ public class GameDirector : MonoBehaviour
     {
         Debug.Assert(m_explorationWorld != null, "World is not assigned in GameDirector");
         Debug.Assert(m_ui != null, "UI is not assigned in GameDirector");
+        Debug.Assert(m_biomeDirector != null, "No tenemos biome director");
     }
 
 
@@ -38,7 +40,7 @@ public class GameDirector : MonoBehaviour
                 switch(m_gameState)
                 {
                     case GameState.Exploration:
-                        m_explorationWorld.SetActive(false);
+                        m_explorationWorld.gameObject.SetActive(false);
                         break;
                     case GameState.Battle:
                         m_battleWorld.gameObject.SetActive(false);
@@ -53,7 +55,7 @@ public class GameDirector : MonoBehaviour
                 switch (m_gameState)
                 {
                     case GameState.Exploration:
-                        m_explorationWorld.SetActive(true);
+                        m_explorationWorld.gameObject.SetActive(true);
                         break;
                     case GameState.Battle:
                         m_battleWorld.gameObject.SetActive(true);
@@ -68,7 +70,8 @@ public class GameDirector : MonoBehaviour
 
     void Start()
     {
-        EnterExploration();
+        Biome currentBiome = m_biomeDirector.PrepareBiome();
+        EnterExploration(currentBiome);
         //EnterBattle(new BattleDef(), null);
     }
 
@@ -86,14 +89,14 @@ public class GameDirector : MonoBehaviour
             return;
         }
 
-        EnterBattle(i_battleDef, null);
+        EnterBattle(i_battleDef, null, m_biomeDirector.GetCurrentBiome());
     }
 
-    void EnterBattle(BattleDef battleDef, Spell i_spellToTest)
+    void EnterBattle(BattleDef battleDef, Spell i_spellToTest, Biome i_currentBiome)
     {
         //TODO: Que sea con los enemigos que tocan
-        m_explorationWorld.SetActive(false);
-        m_battleWorld.Initialize(i_spellToTest);
+        m_explorationWorld.gameObject.SetActive(false);
+        m_battleWorld.Initialize(i_spellToTest, i_currentBiome);
         m_battleWorld.gameObject.SetActive(true);
         m_gameState = GameState.Battle;
         m_ui.TransitionToBattle(m_battleWorld.player.gameObject);
@@ -107,20 +110,21 @@ public class GameDirector : MonoBehaviour
             return;
         }
 
-        EnterExploration();
+        EnterExploration(m_biomeDirector.GetCurrentBiome());
         
     }
 
     public MenuFuture<uint> RequestTrainingBattle(Spell i_spellToTest)
     {
         MenuResult<uint> result = new MenuResult<uint>(0);
-        EnterBattle(new BattleDef(), i_spellToTest);
+        EnterBattle(new BattleDef(), i_spellToTest, m_biomeDirector.GetCurrentBiome());
         return result;
     }
 
-    void EnterExploration()
+    void EnterExploration(Biome i_biome)
     {
-        m_explorationWorld.SetActive(true);
+        m_explorationWorld.Initialize(i_biome);
+        m_explorationWorld.gameObject.SetActive(true);
         m_battleWorld.gameObject.SetActive(false);
         m_gameState = GameState.Exploration;
         m_ui.TransitionToExploration();

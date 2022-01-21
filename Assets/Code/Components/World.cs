@@ -8,10 +8,12 @@ public class World : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] GameDirector m_gameDirector;
+    [SerializeField] MapDirector m_mapDirector;
 
     private void Awake()
     {
         Debug.Assert(m_gameDirector, "No has seteado Game Director en el World");
+        Debug.Assert(m_mapDirector, "No has seteado el Map director en el World");
     }
 
     void Start()
@@ -45,5 +47,10 @@ public class World : MonoBehaviour
     public void RequestPause()
     {
         m_gameDirector.UserRequestedPause();
+    }
+
+    public void Initialize(Biome i_biome)
+    {
+        m_mapDirector.GenerateMap(i_biome);
     }
 }
