@@ -9,11 +9,15 @@ public class World : MonoBehaviour
 
     [SerializeField] GameDirector m_gameDirector;
     [SerializeField] MapDirector m_mapDirector;
+    [SerializeField] AudioDirector m_audioDirector;
+    [SerializeField] HumanoidExplorationVisual m_mcVisual;
 
     private void Awake()
     {
         Debug.Assert(m_gameDirector, "No has seteado Game Director en el World");
         Debug.Assert(m_mapDirector, "No has seteado el Map director en el World");
+        Debug.Assert(m_audioDirector, "No has seteado el Audio director en el World");
+        Debug.Assert(m_mcVisual, "No has seteado el Visual del Jugador en el World");
     }
 
     void Start()
@@ -51,6 +55,8 @@ public class World : MonoBehaviour
 
     public void Initialize(Biome i_biome)
     {
-        m_mapDirector.GenerateMap(i_biome);
+        m_mapDirector.GenerateMap(i_biome, m_mcVisual.gameObject);
+        m_audioDirector.PrepareAudio(i_biome);
+        m_mcVisual.Initialize(i_biome, m_mapDirector);
     }
 }

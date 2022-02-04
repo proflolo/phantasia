@@ -16,3 +16,18 @@ MonoBehaviour:
   tileset_1_delta: {x: 0, y: 1}
   tileset_2_delta: {x: 1, y: 0}
   treeset_delta: {x: 2, y: 0}
+  background_big:
+  - {fileID: 49736700, guid: 72c168be672b6b24b8a473ddd70cc7c9, type: 3}
+  - {fileID: -1270654232, guid: 72c168be672b6b24b8a473ddd70cc7c9, type: 3}
+  background_small:
+  - {fileID: 205759599, guid: 72c168be672b6b24b8a473ddd70cc7c9, type: 3}
+  - {fileID: 1307068776, guid: 72c168be672b6b24b8a473ddd70cc7c9, type: 3}
+  background_far:
+  - {fileID: -2073872161, guid: 559a3cf7f533f594c96818be16d5c9c2, type: 3}
+  - {fileID: -1736518868, guid: 559a3cf7f533f594c96818be16d5c9c2, type: 3}
+  backgroundMusics:
+  - {fileID: 8300000, guid: 8a87b88c79e934249b3ee218808135b1, type: 3}
+  backgroundSounds:
+  - {fileID: 8300000, guid: ae3478e3ac392d946b1e2a353dd46980, type: 3}
+  lowStep: {fileID: 8300000, guid: d9bd68699d171854b9bb1cdb159c2dee, type: 3}
+  highStep: {fileID: 8300000, guid: 94472f40750cf3241a19dcefbc7aa8ab, type: 3}

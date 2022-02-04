@@ -47,6 +47,13 @@ public class MapDirector : MonoBehaviour
             }
         }
 
+        public int get(Vector3 i_position)
+        {
+            int column = height - (int)(i_position.z / 3.0f + 1.0f); 
+            int row = (int)(i_position.x / 3.0f + 1.0f);
+            return get(row, column);
+        }
+
         public IList<IList<bool>> m_cells;
         public int height;
         public int width;
@@ -62,14 +69,14 @@ public class MapDirector : MonoBehaviour
 
     MapData m_map;
 
-    public void GenerateMap(Biome i_biome)
+    public void GenerateMap(Biome i_biome, GameObject i_mainCharacter)
     {
         m_map = _GenerateMap();
-        InstantiateMap(m_map, i_biome);
+        InstantiateMap(m_map, i_biome, i_mainCharacter);
     }
 
 
-    void InstantiateMap(MapData i_mapData, Biome i_biome)
+    void InstantiateMap(MapData i_mapData, Biome i_biome, GameObject i_mainCharacter)
     {
         float deltaX = 0;
         float deltaZ = ((i_mapData.height - 2) / 2) * 6.0f;
@@ -118,11 +125,39 @@ public class MapDirector : MonoBehaviour
                         GameObject deco = Instantiate(i_biome.FindBigDecoToSpawn(), new Vector3(posX + xDelta, 0.4f, posZ + zDelta), Quaternion.AngleAxis(rotationDegrees, Vector3.up), transform);
                         float randomScale = Random.Range(0.8f, 1.0f);
                         deco.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+                        AudioFade fadeComponent = deco.GetComponent<AudioFade>();
+                        if(fadeComponent)
+                        {
+                            fadeComponent.SetTarget(i_mainCharacter);
+                        }
                     }
                 }
             }
+
+           
         }
+
+        
     }
 
+    public enum GroundType
+    {
+        Low,
+        High
+    }
+
+    public GroundType ComputeGroundType(Vector3 i_position)
+    {
+       
+        //int value = m_map.get(i_position);
+        //if (value == 0)
+        //{
+            return GroundType.High;
+        //}
+        //else
+        //{
+        //    return GroundType.High;
+        //}
+    }
 
 }

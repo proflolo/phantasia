@@ -9,4 +9,11 @@ public class BiomeDef : ScriptableObject
     public Vector2 tileset_1_delta;
     public Vector2 tileset_2_delta;
     public Vector2 treeset_delta;
+    public Sprite[] background_big; //Arboles
+    public Sprite[] background_small; //Piedras
+    public Sprite[] background_far; //Montañas
+    public AudioClip[] backgroundMusics;
+    public AudioClip[] backgroundSounds;
+    public AudioClip lowStep;
+    public AudioClip highStep;
 }
