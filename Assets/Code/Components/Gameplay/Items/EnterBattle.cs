@@ -21,4 +21,10 @@ public class EnterBattle : MonoBehaviour
             m_rewardGiven = true;
         }
     }
+
+    public void Config(BattleDef i_battle)
+    {
+        Debug.Assert(i_battle != null);
+        m_battle = i_battle;
+    }
 }

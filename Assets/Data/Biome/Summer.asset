@@ -32,3 +32,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 05b70a23c67a17a429fc48cd1894362b, type: 3}
   lowStep: {fileID: 8300000, guid: d9bd68699d171854b9bb1cdb159c2dee, type: 3}
   highStep: {fileID: 8300000, guid: 94472f40750cf3241a19dcefbc7aa8ab, type: 3}
+  collectibles:
+  - {fileID: 11400000, guid: dc812321a4869e34abfe32eeb82f87c2, type: 2}
+  - {fileID: 11400000, guid: f51ca1c9037f913438ed3c330dd867ec, type: 2}
+  battles:
+  - {fileID: 11400000, guid: 38438f991753cbb4ba8c721c3e89f188, type: 2}

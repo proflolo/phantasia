@@ -16,4 +16,6 @@ public class BiomeDef : ScriptableObject
     public AudioClip[] backgroundSounds;
     public AudioClip lowStep;
     public AudioClip highStep;
+    public ItemDef[] collectibles;
+    public BattleDef[] battles;
 }

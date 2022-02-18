@@ -7,4 +7,5 @@ using UnityEngine;
 public class EnemyDef : ScriptableObject
 {
     public GameObject battlePrefab;
+    public Sprite icon;
 }

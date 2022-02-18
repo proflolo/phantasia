@@ -50,6 +50,7 @@ public class BiomeDirector : MonoBehaviour
         m_currentBiome.bigDecoChanceInExploration = 15; //TODO
         m_currentBiome.smallDecoChanceInExploration = 15; //TODO
         m_currentBiome.bigDecos = new List<GameObject>(m_bigDecos); //TODO
+        m_currentBiome.collectibleChance = 30; //TODO
         return m_currentBiome;
     }
 

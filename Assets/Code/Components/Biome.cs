@@ -10,6 +10,7 @@ public class Biome
     public int smallDecoChanceInExploration;
     public int bigDecoChanceInBattle;
     public int smallDecoChanceInBattle;
+    public int collectibleChance;
 
     public GameObject FindBigDecoToSpawn()
     {

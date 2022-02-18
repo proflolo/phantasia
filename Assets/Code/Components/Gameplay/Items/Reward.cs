@@ -16,6 +16,14 @@ public class Reward : MonoBehaviour
         m_gameWorld = GetComponentInParent<World>();
     }
 
+    public void Config(ItemDef i_itemToReward, uint i_itemAmount)
+    {
+        Debug.Assert(i_itemToReward != null);
+        Debug.Assert(i_itemAmount > 0);
+        m_itemToReward = i_itemToReward;
+        m_itemAmount = i_itemAmount;
+    }
+
     public void OnAction()
     {
         if (!m_rewardGiven)
