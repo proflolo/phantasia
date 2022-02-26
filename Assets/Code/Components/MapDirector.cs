@@ -66,7 +66,10 @@ public class MapDirector : MonoBehaviour
                         }
                         else if(battleRoll < 30)
                         {
-                            cell.encounter = i_biome.def.battles[Random.Range(0, i_biome.def.battles.Length)]; ;
+                            if(Cheats.instance.generateEnemies)
+                            {
+                                cell.encounter = i_biome.def.battles[Random.Range(0, i_biome.def.battles.Length)]; ;
+                            }
                         }
                     }
                     cell.col = colIdx;
@@ -202,7 +205,6 @@ public class MapDirector : MonoBehaviour
                 if(cell.collectible != null)
                 {
                     Vector3 pos = ComputeCellCenter(cell, i_mapData);
-                    pos.y = 0.3f;
                     GameObject collectible = Instantiate(m_collectible, pos, Quaternion.identity, transform);
                     CollectibleController collController = collectible.GetComponent<CollectibleController>();
                     Debug.Assert(collController);

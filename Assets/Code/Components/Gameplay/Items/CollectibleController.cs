@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Reward))]
-[RequireComponent(typeof(SpriteRenderer))]
+
 public class CollectibleController : MonoBehaviour
 {
     Reward m_reward;
-    SpriteRenderer m_renderer;
+    [SerializeField] SpriteRenderer m_renderer;
     // Start is called before the first frame update
     void Awake()
     {
-        m_renderer = GetComponent<SpriteRenderer>();
         m_reward = GetComponent<Reward>();
     }
 

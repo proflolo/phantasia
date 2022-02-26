@@ -9,6 +9,7 @@ public class GameDirector : MonoBehaviour
     [SerializeField] BattleWorld m_battleWorld;
     [SerializeField] UIDirector m_ui;
     [SerializeField] BiomeDirector m_biomeDirector;
+    [SerializeField] Cheats m_cheats;
     enum PauseState
     {
         Active,
@@ -28,6 +29,7 @@ public class GameDirector : MonoBehaviour
         Debug.Assert(m_explorationWorld != null, "World is not assigned in GameDirector");
         Debug.Assert(m_ui != null, "UI is not assigned in GameDirector");
         Debug.Assert(m_biomeDirector != null, "No tenemos biome director");
+        m_cheats.Initialize();
     }
 
 
