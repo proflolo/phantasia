@@ -11,6 +11,8 @@ public class InventoryEntry : MonoBehaviour
     Animator m_animator;
     ItemDef m_item;
     uint m_lastItemAmount = 0;
+    float m_remainingDisplaySeconds = 3.0f;
+    
 
     private void Awake()
     {
@@ -31,16 +33,31 @@ public class InventoryEntry : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_item)
+        if (m_remainingDisplaySeconds >= 0)
         {
-            uint newValue = Game.instance.inventory.GetItemAmount(m_item);
-            if(newValue != m_lastItemAmount)
+            m_remainingDisplaySeconds -= Time.deltaTime;
+            if (m_remainingDisplaySeconds <= 0.0f)
             {
-                m_amount.text = newValue.ToString();
-                m_lastItemAmount = newValue;
-                m_animator.SetTrigger("updated");
+                m_animator.SetTrigger("hide");
             }
         }
+    }
+
+    public bool CanAmountBeUpdated()
+    {
+        return m_remainingDisplaySeconds > 0.0f;
+    }
+
+    public ItemDef GetItem()
+    {
+        return m_item;
+    }
+
+    public void UpdateAmount()
+    {
+        m_remainingDisplaySeconds = 3.0f;
+        m_amount.text = Game.instance.inventory.GetItemAmount(m_item).ToString();
+        //m_animator.SetTrigger("updated");
     }
 
     public void DisplayItem(ItemDef i_item)
@@ -48,5 +65,6 @@ public class InventoryEntry : MonoBehaviour
         m_item = i_item;
         m_icon.sprite = i_item.icon;
         m_amount.text = Game.instance.inventory.GetItemAmount(i_item).ToString();
+        m_animator.SetTrigger("updated");
     }
 }

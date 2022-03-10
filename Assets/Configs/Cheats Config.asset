@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd9134ca00d1dc48ac22d99487d9b2d, type: 3}
   m_Name: Cheats Config
   m_EditorClassIdentifier: 
-  m_generateEnemies: 0
+  m_generateEnemies: 1

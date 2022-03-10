@@ -5,17 +5,22 @@ using UnityEngine;
 public class DestroyAfterTime : MonoBehaviour
 {
     [SerializeField] float m_delaySeconds = 2.0f;
+    bool m_active = false;
     // Start is called before the first frame update
     public void OnAction()
     {
-        StartCoroutine(WaitAndDestroy());
-
-
+        m_active = true;
     }
 
-    IEnumerator WaitAndDestroy()
+    private void Update()
     {
-        yield return new WaitForSeconds(m_delaySeconds);
-        Destroy(gameObject);
+        if(m_active)
+        {
+            m_delaySeconds -= Time.deltaTime;
+            if(m_delaySeconds <= 0.0f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

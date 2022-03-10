@@ -17,7 +17,9 @@ public class MCController : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_world = GetComponentInParent<World>();
+        
         Debug.Assert(m_world != null, "World es nulo en el MCController!");
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class MCController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         m_rigidBody.velocity = m_velocity;
         m_rigidBody.rotation = Quaternion.LookRotation(m_lookAt);
 
@@ -75,5 +78,15 @@ public class MCController : MonoBehaviour
         {
             m_actionRequested = true;
         }
+    }
+
+    private void OnDisable()
+    {
+        m_velocity = Vector3.zero;
+    }
+
+    private void OnEnable()
+    {
+        
     }
 }

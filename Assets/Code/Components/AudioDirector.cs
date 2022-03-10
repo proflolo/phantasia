@@ -21,4 +21,17 @@ public class AudioDirector : MonoBehaviour
         m_ambientAudioSource.clip = ambient;
         m_ambientAudioSource.Play();
     }
+
+    private void OnEnable()
+    {
+        if(m_musicAudioSource.clip != null)
+        {
+            m_musicAudioSource.Play();
+        }
+
+        if(m_ambientAudioSource.clip != null)
+        {
+            m_ambientAudioSource.Play();
+        }
+    }
 }

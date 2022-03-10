@@ -73,14 +73,21 @@ public class GameDirector : MonoBehaviour
     void Start()
     {
         Biome currentBiome = m_biomeDirector.PrepareBiome();
-        EnterExploration(currentBiome);
+        StartExploration(currentBiome);
         //EnterBattle(new BattleDef(), null);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(m_gameState == GameState.Battle)
+        {
+            BattleWorld.BattleState battleState = m_battleWorld.GetBattleState();
+            if(battleState.finished)
+            {
+                GoBackToExploration();
+            }
+        }
     }
 
    public void RequestBattleStart(BattleDef i_battleDef)
@@ -112,7 +119,7 @@ public class GameDirector : MonoBehaviour
             return;
         }
 
-        EnterExploration(m_biomeDirector.GetCurrentBiome());
+        StartExploration(m_biomeDirector.GetCurrentBiome());
         
     }
 
@@ -123,11 +130,19 @@ public class GameDirector : MonoBehaviour
         return result;
     }
 
-    void EnterExploration(Biome i_biome)
+    void StartExploration(Biome i_biome)
     {
         m_explorationWorld.Initialize(i_biome);
-        m_explorationWorld.gameObject.SetActive(true);
         m_battleWorld.gameObject.SetActive(false);
+        m_explorationWorld.gameObject.SetActive(true);
+        m_gameState = GameState.Exploration;
+        m_ui.TransitionToExploration();
+    }
+
+    void GoBackToExploration()
+    {
+        m_battleWorld.gameObject.SetActive(false);
+        m_explorationWorld.gameObject.SetActive(true);
         m_gameState = GameState.Exploration;
         m_ui.TransitionToExploration();
     }
